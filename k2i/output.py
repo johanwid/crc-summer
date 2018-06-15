@@ -69,7 +69,7 @@ def findfactor(path, refactor=False):
 	for i in range(n):
 		avg = -1
 		df = sl_to_df(rd_fls[i])
-		array = df['num-cpus'].tolist()		# all cpus for that .log file
+		array = df['num-cpus'].tolist()	# all cpus for that .log file
 		m = len(array)
 		gcf = -1
 
@@ -83,9 +83,10 @@ def findfactor(path, refactor=False):
 			# find the gcf if no .5 values in log file
 			if (gcf == -1):
 				# reduce is essentailly the same as 'foldl'
-				gcf = reduce((lambda x, y: find_gcf(x, y)), array)
+				gcf = reduce((lambda x, y: find_gcf(x, y)), 
+			`		array)
 
-			# find average number of cpus per .log file			
+			# find average number of cpus per .log file		
 			avg = sum(array) / m
 			# out.loc[i] = [str(rd_fls[i][10:]), m, avg, gcf]
 
@@ -95,7 +96,8 @@ def findfactor(path, refactor=False):
 					df.loc[:, 'num-cpus'] *= 2
 				if (gcf >= 2.0):
 					df.loc[:, 'num-cpus'] *= 0.5
-				ref_array = df['num-cpus'].tolist()		# refactored array
+				ref_array = df['num-cpus'].tolist()	
+				# refactored array
 				ref_m = len(ref_array)
 				avg = sum(ref_array) / ref_m
 
